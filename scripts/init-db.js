@@ -18,13 +18,14 @@ const envPath = path.join(__dirname, '..', '.env');
 dotenv.config({ path: envPath });
 
 // Load environment variables
-const endpoint = process.env.VITE_APPWRITE_ENDPOINT || 'http://localhost:8080/v1';
-const projectId = process.env.VITE_APPWRITE_PROJECT_ID;
-const apiKey = process.env.VITE_APPWRITE_API_KEY;
-const databaseId = process.env.VITE_APPWRITE_DATABASE_ID || 'stem_network_db';
+const endpoint = process.env.PUBLIC_APPWRITE_ENDPOINT || process.env.VITE_APPWRITE_ENDPOINT || 'http://localhost:8080/v1';
+const projectId = process.env.PUBLIC_APPWRITE_PROJECT_ID || process.env.VITE_APPWRITE_PROJECT_ID;
+const apiKey = process.env.APPWRITE_API_KEY || process.env.VITE_APPWRITE_API_KEY;
+const databaseId = process.env.APPWRITE_DATABASE_ID || process.env.VITE_APPWRITE_DATABASE_ID || 'stem_network_db';
 
 if (!projectId || !apiKey) {
-  console.error('❌ Missing VITE_APPWRITE_PROJECT_ID or VITE_APPWRITE_API_KEY');
+  console.error('❌ Missing APPWRITE_PROJECT_ID and APPWRITE_API_KEY');
+  console.error('Set PUBLIC_APPWRITE_PROJECT_ID and APPWRITE_API_KEY in .env file');
   process.exit(1);
 }
 
