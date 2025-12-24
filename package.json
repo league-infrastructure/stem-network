@@ -7,7 +7,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch"
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+    "init:dev": "bash scripts/init-dev.sh",
+    "init:appwrite": "node scripts/setup-appwrite.js",
+    "init:db": "node scripts/init-db.js"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^4.0.0",

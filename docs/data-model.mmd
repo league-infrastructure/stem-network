@@ -1,0 +1,198 @@
+classDiagram
+    %% ============================================
+    %% MODULE: People
+    %% ============================================
+    
+    class Person {
+        +id: int
+        +first_name: string
+        +last_name: string
+        +email: string
+        +phone: string
+        +date_of_birth: date
+        +sex: enum
+        +grade: string
+        +school: string
+        +bio: text
+        +photo: media
+        +is_adult: boolean
+        +login_enabled: boolean
+        +background_check_status: enum
+        +volunteer_tier: enum
+        +total_events: int
+        +open_to_employment: boolean
+        +specializations: string[]
+        +created_at: date
+    }
+    
+    class InstructorAssignment {
+        +id: int
+        +role: enum
+        +employment_type: enum
+        +hourly_rate: decimal
+        +is_volunteer: boolean
+        +confirmed: boolean
+        +hours_worked: decimal
+    }
+    
+    class InstructorEvaluation {
+        +id: int
+        +technical_skills: int
+        +teaching_ability: int
+        +reliability: int
+        +student_engagement: int
+        +notes: text
+        +potential_hire: boolean
+        +created_at: date
+    }
+    
+    %% ============================================
+    %% MODULE: Place
+    %% ============================================
+    
+    class Metro {
+        +id: int
+        +name: string
+        +slug: string
+        +coordinator_email: string
+        +short_url_domain: string
+    }
+    
+    class Venue {
+        +id: int
+        +name: string
+        +address: string
+        +parking_instructions: text
+        +building_entry_instructions: text
+        +capacity: int
+        +has_computers: boolean
+    }
+    
+    class Partner {
+        +id: int
+        +name: string
+        +partner_type: enum
+        +website: string
+        +contact_email: string
+        +can_deliver_events: boolean
+        +can_host_events: boolean
+    }
+    
+    class Flyer {
+        +id: int
+        +name: string
+        +distribution_date: date
+        +distribution_count: int
+        +design_file: media
+        +utm_source: string
+        +utm_campaign: string
+        +total_reach: int
+    }
+    
+    class JobPosting {
+        +id: int
+        +title: string
+        +description: richtext
+        +hourly_rate: string
+        +hours_per_week: string
+        +requirements: text
+        +status: enum
+        +posted_date: date
+    }
+    
+    %% ============================================
+    %% MODULE: Event
+    %% ============================================
+    
+    class Event {
+        +id: int
+        +slug: string
+        +title: string
+        +blurb: string
+        +short_description: text
+        +description: text
+        +instructions: text
+        +enroll: text
+        +event_date: date
+        +start_time: time
+        +end_time: time
+        +capacity: int
+        +available_slots: int
+        +registration_type: enum
+        +status: enum
+        +walk_in_count: int
+        +page_views: int
+        +register_clicks: int
+        +reference: string %% optional external reference ID
+    }
+    
+    class EventPrototype {
+    }
+    
+    Event <|-- EventPrototype
+
+    
+    class Tag {
+        +id: int
+        +name: string
+        +slug: string
+    }
+    
+    class Registration {
+        +id: int
+        +registration_source: enum
+        +utm_source: string
+        +utm_campaign: string
+        +created_at: date
+        +notes: text
+    }
+    
+    class RSVP {
+        +id: int
+        +role: enum
+        +relationship: enum
+        +attended: boolean
+        +checked_in_at: datetime
+        +notes: text
+    }
+    
+    %% ============================================
+    %% RELATIONSHIPS
+    %% ============================================
+    
+    %% Place Module Internal
+    Metro "1" -- "0..*" Venue : metro
+    Metro "1" -- "0..*" Partner : metro
+    Partner "1" -- "0..*" JobPosting : partner
+    Metro "1" -- "0..*" JobPosting : metro
+    Partner "0..1" -- "0..*" Venue : partner
+    
+    %% Place to Event
+    Metro "1" -- "0..*" Event : metro
+    Venue "1" -- "0..*" Event : venue
+    Partner "0..1" -- "0..*" Event : partner
+    Flyer "0..*" -- "0..*" Event : flyer_event
+    
+    %% Place to People
+    Metro "1" -- "0..*" Person : metro
+    
+    %% Event Module Internal
+    EventPrototype "0..1" -- "0..*" Event : prototype
+    Event "1" -- "0..*" Registration : event
+    Event "0..*" -- "0..*" Tag : event_tag
+    
+    %% Event to People Registration
+    Person "1" -- "0..*" Registration : registrant
+    Registration "1" -- "0..*" RSVP : registration
+    Event "1" -- "0..*" RSVP : event
+    Person "1" -- "0..*" RSVP : attendee
+    Person "0..1" -- "0..*" RSVP : guardian
+    
+    %% People to Event Instruction
+    Event "1" -- "0..*" InstructorAssignment : event
+    Person "1" -- "0..*" InstructorAssignment : instructor
+    Partner "0..1" -- "0..*" InstructorAssignment : employer
+    
+    %% People Module Internal
+    InstructorAssignment "1" -- "0..*" InstructorEvaluation : instructor_assignment
+    Person "1" -- "0..*" InstructorEvaluation : evaluator
