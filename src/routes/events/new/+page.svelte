@@ -3,6 +3,73 @@
 
   /** @type {import('./$types').ActionData} */
   export let form;
+
+  function formatDateForInput(date) {
+    const d = date ?? new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+
+  function pick(list) {
+    return list[Math.floor(Math.random() * list.length)];
+  }
+
+  const titles = [
+    'Intro to Python Workshop',
+    'JavaScript Game Jam',
+    'Robotics Kickoff Session',
+    'Web Basics for Teens',
+    'Data Science Day'
+  ];
+  const blurbs = [
+    'Hands-on coding with friendly mentors.',
+    'Build and share a simple project.',
+    'Learn by doing in a fun environment.',
+    'Great for beginners and curious minds.',
+    'Small group, high support.'
+  ];
+  const descriptions = [
+    'Agenda: icebreaker, fundamentals, project build, showcase. Bring a laptop if possible; loaners available. Parents welcome for check-in.',
+    'We will cover variables, loops, and functions, then apply them in a mini-project. No prior experience required.',
+    'Participants will form small teams and collaborate on a beginner-friendly challenge with mentor guidance.'
+  ];
+
+  let fields = {
+    title: form?.data?.title || '',
+    slug: form?.data?.slug || '',
+    blurb: form?.data?.blurb || '',
+    short_description: form?.data?.short_description || '',
+    description: form?.data?.description || '',
+    event_date: form?.data?.event_date || '',
+    start_time: form?.data?.start_time || '',
+    end_time: form?.data?.end_time || '',
+    capacity: form?.data?.capacity || '',
+    status: form?.data?.status || 'draft',
+    registration_type: form?.data?.registration_type || 'open'
+  };
+
+  function fillExample() {
+    const title = pick(titles);
+    const slug = `${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}-${Math.floor(Math.random() * 1000)}`;
+    const start = pick(['10:00', '13:00', '17:30']);
+    const end = pick(['12:00', '15:00', '19:30']);
+    const capacity = pick(['16', '24', '30']);
+    fields = {
+      title,
+      slug,
+      blurb: pick(blurbs),
+      short_description: pick(descriptions),
+      description: pick(descriptions),
+      event_date: formatDateForInput(new Date(Date.now() + 1000 * 60 * 60 * 24 * pick([3, 7, 14]))),
+      start_time: start,
+      end_time: end,
+      capacity,
+      status: 'published',
+      registration_type: 'open'
+    };
+  }
 </script>
 
 <div class="min-h-screen bg-slate-100">
@@ -17,9 +84,14 @@
               Capture the essentials for this session. You can enrich it later with venue assignments, instructors, and marketing details.
             </p>
           </div>
-          <a href="/events" class="inline-flex items-center gap-2 self-start rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-800">
-            Cancel
-          </a>
+          <div class="flex items-center gap-3">
+            <button type="button" on:click={fillExample} class="inline-flex items-center gap-2 self-start rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-slate-700">
+              Fill example
+            </button>
+            <a href="/events" class="inline-flex items-center gap-2 self-start rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-800">
+              Cancel
+            </a>
+          </div>
         </div>
       </header>
 
@@ -41,7 +113,7 @@
                 id="title"
                 name="title"
                 required
-                value={form?.data?.title || ''}
+                bind:value={fields.title}
                 class="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm transition focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200"
                 placeholder="Intro to Python Workshop"
               />
@@ -53,7 +125,7 @@
                 id="slug"
                 name="slug"
                 required
-                value={form?.data?.slug || ''}
+                bind:value={fields.slug}
                 class="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm transition focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200"
                 placeholder="python-workshop-2025"
               />
@@ -66,7 +138,7 @@
               type="text"
               id="blurb"
               name="blurb"
-              value={form?.data?.blurb || ''}
+              bind:value={fields.blurb}
               class="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm transition focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200"
               placeholder="One-line summary for cards"
             />
@@ -77,9 +149,10 @@
               id="short_description"
               name="short_description"
               rows="3"
+              bind:value={fields.short_description}
               class="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm transition focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200"
               placeholder="High-level overview for partners and families"
-            >{form?.data?.short_description || ''}</textarea>
+            ></textarea>
           </div>
           <div class="space-y-2">
             <label for="description" class="text-sm font-medium text-slate-700">Detailed description</label>
@@ -87,9 +160,10 @@
               id="description"
               name="description"
               rows="6"
+              bind:value={fields.description}
               class="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm transition focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200"
               placeholder="Agenda, learning outcomes, logistics, etc."
-            >{form?.data?.description || ''}</textarea>
+            ></textarea>
           </div>
       </section>
 
@@ -102,7 +176,7 @@
                 type="date"
                 id="event_date"
                 name="event_date"
-                value={form?.data?.event_date || ''}
+                bind:value={fields.event_date}
                 class="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm transition focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200"
               />
             </div>
@@ -113,7 +187,7 @@
                 id="capacity"
                 name="capacity"
                 min="0"
-                value={form?.data?.capacity || ''}
+                bind:value={fields.capacity}
                 class="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm transition focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200"
                 placeholder="How many seats?"
               />
@@ -126,7 +200,7 @@
                 type="time"
                 id="start_time"
                 name="start_time"
-                value={form?.data?.start_time || ''}
+                bind:value={fields.start_time}
                 class="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm transition focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200"
               />
             </div>
@@ -136,7 +210,7 @@
                 type="time"
                 id="end_time"
                 name="end_time"
-                value={form?.data?.end_time || ''}
+                bind:value={fields.end_time}
                 class="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm transition focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200"
               />
             </div>
@@ -151,12 +225,13 @@
               <select
                 id="status"
                 name="status"
+                bind:value={fields.status}
                 class="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm transition focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200"
               >
-                <option value="draft" selected={form?.data?.status === 'draft'}>Draft</option>
-                <option value="published" selected={form?.data?.status === 'published'}>Published</option>
-                <option value="cancelled" selected={form?.data?.status === 'cancelled'}>Cancelled</option>
-                <option value="completed" selected={form?.data?.status === 'completed'}>Completed</option>
+                <option value="draft">Draft</option>
+                <option value="published">Published</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="completed">Completed</option>
               </select>
             </div>
             <div class="space-y-2">
@@ -164,11 +239,12 @@
               <select
                 id="registration_type"
                 name="registration_type"
+                bind:value={fields.registration_type}
                 class="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm transition focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200"
               >
-                <option value="open" selected={form?.data?.registration_type === 'open'}>Open</option>
-                <option value="invite-only" selected={form?.data?.registration_type === 'invite-only'}>Invite only</option>
-                <option value="waitlist" selected={form?.data?.registration_type === 'waitlist'}>Waitlist</option>
+                <option value="open">Open</option>
+                <option value="invite-only">Invite only</option>
+                <option value="waitlist">Waitlist</option>
               </select>
             </div>
           </div>
