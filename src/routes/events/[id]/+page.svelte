@@ -2,8 +2,15 @@
   /** @type {import('./$types').PageData} */
   export let data;
 
+  const STATUS_CLASSES = {
+    published: 'bg-emerald-100 text-emerald-700 ring-1 ring-inset ring-emerald-200',
+    draft: 'bg-amber-100 text-amber-700 ring-1 ring-inset ring-amber-200',
+    cancelled: 'bg-rose-100 text-rose-700 ring-1 ring-inset ring-rose-200',
+    completed: 'bg-slate-100 text-slate-700 ring-1 ring-inset ring-slate-200'
+  };
+
   function formatDate(dateString) {
-    if (!dateString) return 'No date set';
+    if (!dateString) return 'Date to be confirmed';
     return new Date(dateString).toLocaleDateString('en-US', {
       weekday: 'long',
       year: 'numeric',
@@ -11,101 +18,114 @@
       day: 'numeric'
     });
   }
+
+  function statusClasses(status) {
+    if (!status) return 'bg-slate-100 text-slate-700 ring-1 ring-inset ring-slate-200';
+    return STATUS_CLASSES[status] ?? 'bg-slate-100 text-slate-700 ring-1 ring-inset ring-slate-200';
+  }
 </script>
 
-<div class="container mx-auto px-4 py-8 max-w-4xl">
-  <div class="mb-4">
-    <a href="/events" class="text-blue-600 hover:underline">← Back to Events</a>
-  </div>
+<div class="min-h-screen bg-slate-100">
+  <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+    <a href="/events" class="inline-flex items-center text-sm font-medium text-slate-500 transition-colors hover:text-slate-800">
+      <span aria-hidden="true" class="mr-2">←</span> Back to roster
+    </a>
 
-  <div class="bg-white rounded-lg shadow-lg p-8">
-    <div class="flex justify-between items-start mb-6">
-      <div>
-        <h1 class="text-4xl font-bold mb-2">{data.event.title}</h1>
-        {#if data.event.blurb}
-          <p class="text-xl text-gray-600">{data.event.blurb}</p>
-        {/if}
-      </div>
-      <div class="flex gap-2">
-        <a 
-          href="/events/{data.event.$id}/edit" 
-          class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Edit
-        </a>
-      </div>
-    </div>
+    <article class="mt-6 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg">
+      <header class="border-b border-slate-200 bg-gradient-to-b from-white/80 to-white/60 px-8 py-10">
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+          <div class="space-y-4">
+            <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
+              Event overview
+            </div>
+            <h1 class="text-3xl font-semibold text-slate-900 sm:text-4xl">{data.event.title}</h1>
+            {#if data.event.blurb}
+              <p class="max-w-2xl text-base leading-relaxed text-slate-600">{data.event.blurb}</p>
+            {/if}
+          </div>
+          <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+            <span class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold capitalize ${statusClasses(data.event.status)}`}>
+              {data.event.status || 'draft'}
+            </span>
+            <a
+              href="/events/{data.event.$id}/edit"
+              class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-slate-700"
+            >
+              Edit details
+            </a>
+          </div>
+        </div>
 
-    <div class="grid grid-cols-2 gap-4 mb-6 p-4 bg-gray-50 rounded">
-      <div>
-        <span class="font-semibold">Date:</span> {formatDate(data.event.event_date)}
-      </div>
-      {#if data.event.start_time}
-        <div>
-          <span class="font-semibold">Time:</span> {data.event.start_time}
-          {#if data.event.end_time}
-            - {data.event.end_time}
+        <dl class="mt-10 grid gap-6 text-sm text-slate-600 sm:grid-cols-2">
+          <div>
+            <dt class="text-[0.65rem] font-semibold uppercase tracking-wide text-slate-500">Date</dt>
+            <dd class="mt-1 text-slate-800">{formatDate(data.event.event_date)}</dd>
+          </div>
+          <div>
+            <dt class="text-[0.65rem] font-semibold uppercase tracking-wide text-slate-500">Registration</dt>
+            <dd class="mt-1 text-slate-800">{data.event.registration_type || 'open'}</dd>
+          </div>
+          {#if data.event.start_time}
+            <div>
+              <dt class="text-[0.65rem] font-semibold uppercase tracking-wide text-slate-500">Time</dt>
+              <dd class="mt-1 text-slate-800">
+                {data.event.start_time}
+                {#if data.event.end_time}
+                  – {data.event.end_time}
+                {/if}
+              </dd>
+            </div>
           {/if}
-        </div>
-      {/if}
-      {#if data.event.capacity}
-        <div>
-          <span class="font-semibold">Capacity:</span> {data.event.capacity}
-        </div>
-      {/if}
-      {#if data.event.available_slots !== undefined}
-        <div>
-          <span class="font-semibold">Available Slots:</span> {data.event.available_slots}
-        </div>
-      {/if}
-      <div>
-        <span class="font-semibold">Status:</span>
-        <span class="px-2 py-1 rounded text-sm ml-2"
-          class:bg-green-100={data.event.status === 'published'}
-          class:bg-yellow-100={data.event.status === 'draft'}
-          class:bg-red-100={data.event.status === 'cancelled'}
-          class:bg-gray-100={data.event.status === 'completed'}
-        >
-          {data.event.status || 'draft'}
-        </span>
-      </div>
-      <div>
-        <span class="font-semibold">Registration:</span> {data.event.registration_type || 'open'}
-      </div>
-    </div>
+          {#if data.event.capacity}
+            <div>
+              <dt class="text-[0.65rem] font-semibold uppercase tracking-wide text-slate-500">Capacity</dt>
+              <dd class="mt-1 text-slate-800">{data.event.capacity} seats</dd>
+            </div>
+          {/if}
+        </dl>
+      </header>
 
-    {#if data.event.short_description}
-      <div class="mb-6">
-        <h2 class="text-2xl font-semibold mb-3">Overview</h2>
-        <p class="text-gray-700">{data.event.short_description}</p>
-      </div>
-    {/if}
+      <section class="space-y-12 px-8 py-10">
+        {#if data.event.short_description}
+          <section class="space-y-3">
+            <h2 class="text-xl font-semibold text-slate-900">Overview</h2>
+            <p class="max-w-none text-base leading-relaxed text-slate-700">{data.event.short_description}</p>
+          </section>
+        {/if}
 
-    {#if data.event.description}
-      <div class="mb-6">
-        <h2 class="text-2xl font-semibold mb-3">Description</h2>
-        <div class="prose max-w-none">
-          {data.event.description}
-        </div>
-      </div>
-    {/if}
+        {#if data.event.description}
+          <section class="space-y-3">
+            <h2 class="text-xl font-semibold text-slate-900">Description</h2>
+            <div class="prose prose-slate max-w-none text-slate-700">
+              {data.event.description}
+            </div>
+          </section>
+        {/if}
 
-    {#if data.event.instructions}
-      <div class="mb-6">
-        <h2 class="text-2xl font-semibold mb-3">Instructions</h2>
-        <div class="prose max-w-none">
-          {data.event.instructions}
-        </div>
-      </div>
-    {/if}
+        {#if data.event.instructions}
+          <section class="space-y-3">
+            <h2 class="text-xl font-semibold text-slate-900">Logistics & instructions</h2>
+            <div class="prose prose-slate max-w-none text-slate-700">
+              {data.event.instructions}
+            </div>
+          </section>
+        {/if}
 
-    <div class="mt-8 text-sm text-gray-500 border-t pt-4">
-      <p>Event ID: {data.event.$id}</p>
-      {#if data.event.slug}
-        <p>Slug: {data.event.slug}</p>
-      {/if}
-      <p>Created: {new Date(data.event.$createdAt).toLocaleString()}</p>
-      <p>Updated: {new Date(data.event.$updatedAt).toLocaleString()}</p>
-    </div>
+        <section class="grid gap-6 rounded-2xl border border-slate-200 bg-slate-50/80 p-6 sm:grid-cols-2">
+          <div>
+            <h3 class="text-xs font-semibold uppercase tracking-wide text-slate-500">Event identifiers</h3>
+            <p class="mt-2 text-sm font-mono text-slate-700 break-all">{data.event.$id}</p>
+            {#if data.event.slug}
+              <p class="mt-2 text-sm font-mono text-slate-700">{data.event.slug}</p>
+            {/if}
+          </div>
+          <div>
+            <h3 class="text-xs font-semibold uppercase tracking-wide text-slate-500">Audit trail</h3>
+            <p class="mt-2 text-sm text-slate-700">Created {new Date(data.event.$createdAt).toLocaleString()}</p>
+            <p class="mt-1 text-sm text-slate-700">Updated {new Date(data.event.$updatedAt).toLocaleString()}</p>
+          </div>
+        </section>
+      </section>
+    </article>
   </div>
 </div>
