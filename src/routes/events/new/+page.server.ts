@@ -70,12 +70,12 @@ export const actions: Actions = {
     let newEventId = '';
 
     try {
-      const created = await admin.databases.createDocument(
-        APPWRITE_DATABASE_ID,
-        'events',
-        ID.unique(),
-        payload
-      );
+      const created = await admin.tables.createRow({
+        databaseId: APPWRITE_DATABASE_ID,
+        tableId: 'events',
+        rowId: ID.unique(),
+        data: payload,
+      });
 
       newEventId = created.$id;
     } catch (error) {

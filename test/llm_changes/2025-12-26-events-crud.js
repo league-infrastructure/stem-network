@@ -29,4 +29,9 @@ assert.ok(
   'Events page should sort events by event_date'
 );
 
+assert.ok(
+  listContents.includes('tables.listRows({'),
+  'Events page should call TablesDB.listRows with the object-style signature'
+);
+
 console.log('✅ Events CRUD uses shared Appwrite admin helper');

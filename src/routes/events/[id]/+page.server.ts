@@ -9,11 +9,11 @@ export const load: PageServerLoad = async ({ params }) => {
   const admin = new AppwriteAdmin();
 
   try {
-    const event = await admin.databases.getDocument(
-      APPWRITE_DATABASE_ID,
-      'events',
-      params.id
-    );
+    const event = await admin.tables.getRow({
+      databaseId: APPWRITE_DATABASE_ID,
+      tableId: 'events',
+      rowId: params.id,
+    });
 
     const resolvedStatus =
       typeof event.status === 'string' && EVENT_STATUS_SET.has(event.status as EventStatus)
@@ -35,8 +35,8 @@ export const load: PageServerLoad = async ({ params }) => {
         updatedAt: event.$updatedAt,
       },
     };
-  } catch (err) {
-    const message = err instanceof Error ? err.message : 'Event not found';
-    throw error(404, message);
-  }
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Event not found';
+      throw error(404, message);
+    }
 };

@@ -7,11 +7,11 @@ import type { EventStatus } from '$lib/constants/event-statuses';
 
 export const load: PageServerLoad = async ({ params }) => {
   const admin = new AppwriteAdmin();
-  const event = await admin.databases.getDocument(
-    APPWRITE_DATABASE_ID,
-    'events',
-    params.id
-  );
+  const event = await admin.tables.getRow({
+    databaseId: APPWRITE_DATABASE_ID,
+    tableId: 'events',
+    rowId: params.id,
+  });
 
   const resolvedStatus =
     typeof event.status === 'string' && EVENT_STATUS_SET.has(event.status as EventStatus)
@@ -96,12 +96,12 @@ export const actions: Actions = {
     });
 
     try {
-      await admin.databases.updateDocument(
-        APPWRITE_DATABASE_ID,
-        'events',
-        params.id,
-        payload
-      );
+      await admin.tables.updateRow({
+        databaseId: APPWRITE_DATABASE_ID,
+        tableId: 'events',
+        rowId: params.id,
+        data: payload,
+      });
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Failed to update event';
       return fail(500, {

@@ -14,7 +14,8 @@ Use this as the system prompt for LLMs working in this repo. Keep answers concis
 - SvelteKit intro: https://svelte.dev/docs/kit/introduction
 - Appwrite docs home: https://appwrite.io/docs (auth, databases, storage, functions, messaging, realtime)
 - Repo docs: [docs/operations.md](docs/operations.md), [docs/use_cases.md](docs/use_cases.md), [docs/data-model.mermaid](docs/data-model.mermaid)
-
+- [Local sveltkit guidance ](prompts/sveltkit.md)
+  
 ## Architecture & Tech Choices (do not replace)
 - Frontend: SvelteKit (Vite-based). Use file-system routing, `load` for data, form actions for mutations, and prerender/SSR as appropriate. Favor progressive enhancement and accessibility.
 - TypeScript: Strongly preferred over JavaScript for all new code. Use proper TypeScript types instead of JSDoc annotations. Server files should be `.server.ts`, not `.server.js`.

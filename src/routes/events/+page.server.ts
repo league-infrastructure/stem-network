@@ -15,24 +15,24 @@ type EventSummary = {
 
 export const load: PageServerLoad = async () => {
   const admin = new AppwriteAdmin();
-  const events = await admin.databases.listDocuments(
-    APPWRITE_DATABASE_ID,
-    'events',
-    [Query.orderDesc('event_date'), Query.limit(100)]
-  );
+  const events = await admin.tables.listRows({
+    databaseId: APPWRITE_DATABASE_ID,
+    tableId: 'events',
+    queries: [Query.orderDesc('event_date'), Query.limit(100)],
+  });
 
-  const summaries: EventSummary[] = events.documents.map((doc) => {
+  const summaries: EventSummary[] = events.rows.map((row) => {
     const normalizedStatus =
-      typeof doc.status === 'string' && EVENT_STATUS_SET.has(doc.status as EventStatus)
-        ? (doc.status as EventStatus)
+      typeof row.status === 'string' && EVENT_STATUS_SET.has(row.status as EventStatus)
+        ? (row.status as EventStatus)
         : 'draft';
 
     return {
-      id: doc.$id,
-      title: doc.title ?? 'Untitled Event',
+      id: row.$id,
+      title: row.title ?? 'Untitled Event',
       status: normalizedStatus,
-      eventDate: doc.event_date ?? undefined,
-      createdAt: doc.$createdAt,
+      eventDate: row.event_date ?? undefined,
+      createdAt: row.$createdAt,
     };
   });
 
@@ -53,7 +53,11 @@ export const actions: Actions = {
     const admin = new AppwriteAdmin();
 
     try {
-      await admin.databases.deleteDocument(APPWRITE_DATABASE_ID, 'events', eventId);
+      await admin.tables.deleteRow({
+        databaseId: APPWRITE_DATABASE_ID,
+        tableId: 'events',
+        rowId: eventId,
+      });
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Failed to delete event';
       return fail(500, { error: message });

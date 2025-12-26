@@ -12,6 +12,10 @@ for (const status of ['draft', 'published', 'cancelled', 'completed', 'active', 
 const newServer = read('../../src/routes/events/new/+page.server.ts');
 assert(newServer.includes('EVENT_STATUS_SET'), 'New event action must validate statuses against shared set.');
 assert(
+  newServer.includes('createRow({'),
+  'New event action must use TablesDB.createRow with object-style parameters.'
+);
+assert(
   newServer.includes('Status must be one of draft, published, cancelled, completed, active, or inactive.'),
   'New event action should surface a clear status validation message.'
 );
