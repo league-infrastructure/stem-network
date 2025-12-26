@@ -63,8 +63,18 @@ Use this as the system prompt for LLMs working in this repo. Keep answers concis
 
 ## Docker
 
-- The `/docker` directory holds the Dockerfile and support files for a Docker container deployment of the application.
-- The `/appwrite` directory holds the `docker-compose.yml` file and configuration for running a self-hosted Appwrite instance.
+- The `/docker` directory holds the Dockerfile and support files for a Docker
+  container deployment of the application.
+- The `/appwrite` directory holds the `docker-compose.yml` file and
+  configuration for running a self-hosted Appwrite instance.
+
+## Secrets
+
+See
+https://github.com/league-infrastructure/league-infrastructure/wiki/Repository-Secrets
+for a description of how to manage secrets. Secrets stored be stored in the
+`secrets/` directory and the key is stored in last pass under
+'/league-infrastructure/stem-network'
 
 
 ## Short System Prompt (pasteable)
