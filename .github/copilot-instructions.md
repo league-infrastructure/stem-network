@@ -6,7 +6,7 @@ Use this as the system prompt for LLMs working in this repo. Keep answers concis
 - Name: League of Amazing Programmers Tech Network (STEM Network)
 - Type: Web application for event discovery, registration, delivery partners, volunteers, and ops reporting
 - Core stack: **SvelteKit** frontend, **Appwrite** backend (auth, DB, storage, messaging, functions), some **server functions in Python**
-- Source of truth for data: `docs/data-model.mermaid` (update model first, then propagate through code)
+- Source of truth for data: `docs/data-model.mmd` (update model first, then propagate through code)
 - Key flows: event discovery/registration, marketing attribution (UTM), instructor assignment/evaluation, volunteer pipeline, partner collaboration, venue management
 
 ## Canonical References
@@ -17,6 +17,7 @@ Use this as the system prompt for LLMs working in this repo. Keep answers concis
 
 ## Architecture & Tech Choices (do not replace)
 - Frontend: SvelteKit (Vite-based). Use file-system routing, `load` for data, form actions for mutations, and prerender/SSR as appropriate. Favor progressive enhancement and accessibility.
+- TypeScript: Strongly preferred over JavaScript for all new code. Use proper TypeScript types instead of JSDoc annotations. Server files should be `.server.ts`, not `.server.js`.
 - Backend: Appwrite services for auth, database, storage, messaging, and realtime. Use Appwrite functions for server logic; some functions may be written in Python. Prefer Appwrite SDKs over raw HTTP unless required.
 - Infra direction: Keep vendor lock-in reasonable but Appwrite is the current backend choice. Do not swap stack without explicit approval.
 

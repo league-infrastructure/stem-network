@@ -5,9 +5,9 @@ import {
   PUBLIC_APPWRITE_PROJECT_ID 
 } from '$env/static/public';
 import { APPWRITE_API_KEY, APPWRITE_DATABASE_ID } from '$env/static/private';
+import type { Actions } from './$types';
 
-/** @type {import('./$types').Actions} */
-export const actions = {
+export const actions: Actions = {
   default: async ({ request }) => {
     const client = new Client()
       .setEndpoint(PUBLIC_APPWRITE_ENDPOINT)
@@ -26,7 +26,7 @@ export const actions = {
       event_date: data.get('event_date') || undefined,
       start_time: data.get('start_time') || undefined,
       end_time: data.get('end_time') || undefined,
-      capacity: data.get('capacity') ? parseInt(data.get('capacity')) : undefined,
+      capacity: data.get('capacity') ? parseInt(data.get('capacity') ?? '') : undefined,
       status: data.get('status') || 'draft',
       registration_type: data.get('registration_type') || 'open'
     };

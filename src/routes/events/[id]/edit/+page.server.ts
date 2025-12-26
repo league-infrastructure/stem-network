@@ -1,5 +1,6 @@
 import { Client, Databases } from 'node-appwrite';
 import { error, redirect } from '@sveltejs/kit';
+import type { Actions } from './$types';
 import { 
   PUBLIC_APPWRITE_ENDPOINT, 
   PUBLIC_APPWRITE_PROJECT_ID 
@@ -7,7 +8,7 @@ import {
 import { APPWRITE_API_KEY, APPWRITE_DATABASE_ID } from '$env/static/private';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ params }) {
+export async function load({ params }: { params: { id: string } }) {
   const client = new Client()
     .setEndpoint(PUBLIC_APPWRITE_ENDPOINT)
     .setProject(PUBLIC_APPWRITE_PROJECT_ID)
@@ -29,8 +30,7 @@ export async function load({ params }) {
   }
 }
 
-/** @type {import('./$types').Actions} */
-export const actions = {
+export const actions: Actions = {
   default: async ({ request, params }) => {
     const client = new Client()
       .setEndpoint(PUBLIC_APPWRITE_ENDPOINT)
@@ -40,24 +40,26 @@ export const actions = {
     const databases = new Databases(client);
     const data = await request.formData();
 
-    const eventData = {
-      slug: data.get('slug'),
-      title: data.get('title'),
-      blurb: data.get('blurb') || undefined,
-      short_description: data.get('short_description') || undefined,
-      description: data.get('description') || undefined,
-      event_date: data.get('event_date') || undefined,
-      start_time: data.get('start_time') || undefined,
-      end_time: data.get('end_time') || undefined,
-      capacity: data.get('capacity') ? parseInt(data.get('capacity')) : undefined,
+    const eventData: Record<string, FormDataEntryValue | undefined> = {
+      slug: data.get('slug') ?? undefined,
+      title: data.get('title') ?? undefined,
+      blurb: data.get('blurb') ?? undefined,
+      short_description: data.get('short_description') ?? undefined,
+      description: data.get('description') ?? undefined,
+      event_date: data.get('event_date') ?? undefined,
+      start_time: data.get('start_time') ?? undefined,
+      end_time: data.get('end_time') ?? undefined,
+      capacity: data.get('capacity') ?? undefined,
       status: data.get('status') || 'draft',
       registration_type: data.get('registration_type') || 'open'
     };
 
     // Remove undefined values
-    Object.keys(eventData).forEach(key => 
-      eventData[key] === undefined && delete eventData[key]
-    );
+    Object.keys(eventData).forEach(key => {
+      if (eventData[key] === undefined) {
+        delete eventData[key];
+      }
+    });
 
     try {
       await databases.updateDocument(
@@ -70,9 +72,10 @@ export const actions = {
       throw redirect(303, `/events/${params.id}`);
     } catch (err) {
       console.error('Error updating event:', err);
+      const errorMessage = err instanceof Error ? err.message : String(err);
       return { 
         success: false, 
-        error: err.message,
+        error: errorMessage,
         data: Object.fromEntries(data)
       };
     }

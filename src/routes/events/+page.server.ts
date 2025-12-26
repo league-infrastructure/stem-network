@@ -4,9 +4,9 @@ import {
   PUBLIC_APPWRITE_PROJECT_ID 
 } from '$env/static/public';
 import { APPWRITE_API_KEY, APPWRITE_DATABASE_ID } from '$env/static/private';
+import type { PageServerLoad, Actions } from './$types';
 
-/** @type {import('./$types').PageServerLoad} */
-export async function load() {
+export const load: PageServerLoad = async () => {
   const client = new Client()
     .setEndpoint(PUBLIC_APPWRITE_ENDPOINT)
     .setProject(PUBLIC_APPWRITE_PROJECT_ID)
@@ -36,8 +36,7 @@ export async function load() {
   }
 }
 
-/** @type {import('./$types').Actions} */
-export const actions = {
+export const actions: Actions = {
   delete: async ({ request }) => {
     const client = new Client()
       .setEndpoint(PUBLIC_APPWRITE_ENDPOINT)
