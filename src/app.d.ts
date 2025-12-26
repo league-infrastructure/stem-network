@@ -3,7 +3,9 @@
 declare global {
   namespace App {
     // interface Error {}
-    // interface Locals {}
+    interface Locals {
+      user: import('node-appwrite').Models.User<import('node-appwrite').Models.Preferences> | null;
+    }
     // interface PageData {}
     // interface Platform {}
   }

@@ -5,6 +5,7 @@
 <main class="hello-world">
   <h1>Hello, World!</h1>
   <p>Welcome to the minimal STEM Network app.</p>
+  <a class="link" href="/events">Manage events</a>
 </main>
 
 <style>
@@ -27,5 +28,11 @@
     margin: 0;
     font-size: 1.125rem;
     color: #555;
+  }
+
+  .link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
   }
 </style>
