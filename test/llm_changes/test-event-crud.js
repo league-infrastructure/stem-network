@@ -32,11 +32,11 @@ async function testCRUD() {
   try {
     // CREATE
     console.log('1️⃣  Creating a test event...');
-    const newEvent = await tables.createRow({
-      databaseId,
-      collectionId: 'events',
-      documentId: ID.unique(),
-      data: {
+      const newEvent = await tables.createRow({
+        databaseId,
+        tableId: 'events',
+        rowId: ID.unique(),
+        data: {
         slug: 'test-event-' + Date.now(),
         title: 'Test Event',
         blurb: 'A test event created by the test script',
@@ -53,31 +53,31 @@ async function testCRUD() {
     
     // READ - List
     console.log('2️⃣  Listing all events...');
-    const allEvents = await tables.listRows({
-      databaseId,
-      collectionId: 'events',
-      queries: [Query.limit(10)]
-    });
+      const allEvents = await tables.listRows({
+        databaseId,
+        tableId: 'events',
+        queries: [Query.limit(10)]
+      });
     console.log(`✓ Found ${allEvents.total} events\n`);
     
     // READ - Single
     console.log('3️⃣  Reading the created event...');
-    const readEvent = await tables.getRow({
-      databaseId,
-      collectionId: 'events',
-      documentId: createdEventId
-    });
+      const readEvent = await tables.getRow({
+        databaseId,
+        tableId: 'events',
+        rowId: createdEventId
+      });
     console.log(`✓ Read event: ${readEvent.title}`);
     console.log(`  Status: ${readEvent.status}`);
     console.log(`  Capacity: ${readEvent.capacity}\n`);
     
     // UPDATE
     console.log('4️⃣  Updating the event...');
-    const updatedEvent = await tables.updateRow({
-      databaseId,
-      collectionId: 'events',
-      documentId: createdEventId,
-      data: {
+      const updatedEvent = await tables.updateRow({
+        databaseId,
+        tableId: 'events',
+        rowId: createdEventId,
+        data: {
         title: 'Updated Test Event',
         status: 'published',
         capacity: 25
@@ -89,11 +89,11 @@ async function testCRUD() {
     
     // DELETE
     console.log('5️⃣  Deleting the test event...');
-    await tables.deleteRow({
-      databaseId,
-      collectionId: 'events',
-      documentId: createdEventId
-    });
+      await tables.deleteRow({
+        databaseId,
+        tableId: 'events',
+        rowId: createdEventId
+      });
     console.log(`✓ Deleted event: ${createdEventId}\n`);
     
     // Verify deletion
@@ -117,7 +117,7 @@ async function testCRUD() {
     // Cleanup if event was created
     if (createdEventId) {
       try {
-        await tables.deleteRow({ databaseId, tableId: 'events', rowId: createdEventId });
+          await tables.deleteRow({ databaseId, tableId: 'events', rowId: createdEventId });
         console.log('🧹 Cleaned up test event');
       } catch (cleanupError) {
         // Ignore cleanup errors

@@ -3,6 +3,7 @@ classDiagram
     %% MODULE: People
     %% ============================================
     
+    %% onDelete: cascade
     class Person {
         +id: int
         +first_name: string
@@ -25,6 +26,7 @@ classDiagram
         +created_at: date
     }
     
+    %% onDelete: cascade
     class InstructorAssignment {
         +id: int
         +role: enum
@@ -35,6 +37,7 @@ classDiagram
         +hours_worked: decimal
     }
     
+    %% onDelete: setNull
     class InstructorEvaluation {
         +id: int
         +technical_skills: int
@@ -50,6 +53,7 @@ classDiagram
     %% MODULE: Place
     %% ============================================
     
+    %% onDelete: cascade
     class Metro {
         +id: int
         +name: string
@@ -58,6 +62,7 @@ classDiagram
         +short_url_domain: string
     }
     
+    %% onDelete: cascade
     class Venue {
         +id: int
         +name: string
@@ -68,6 +73,7 @@ classDiagram
         +has_computers: boolean
     }
     
+    %% onDelete: cascade
     class Partner {
         +id: int
         +name: string
@@ -78,6 +84,7 @@ classDiagram
         +can_host_events: boolean
     }
     
+    %% onDelete: setNull
     class Flyer {
         +id: int
         +name: string
@@ -89,6 +96,7 @@ classDiagram
         +total_reach: int
     }
     
+    %% onDelete: setNull
     class JobPosting {
         +id: int
         +title: string
@@ -104,6 +112,7 @@ classDiagram
     %% MODULE: Event
     %% ============================================
     
+    %% onDelete: cascade
     class Event {
         +id: int
         +slug: string
@@ -126,18 +135,21 @@ classDiagram
         +reference: string %% optional external reference ID
     }
     
+    %% onDelete: setNull
     class EventPrototype {
     }
     
     Event <|-- EventPrototype
 
     
+    %% onDelete: setNull
     class Tag {
         +id: int
         +name: string
         +slug: string
     }
     
+    %% onDelete: cascade
     class Registration {
         +id: int
         +registration_source: enum
@@ -147,6 +159,7 @@ classDiagram
         +notes: text
     }
     
+    %% onDelete: setNull
     class RSVP {
         +id: int
         +role: enum

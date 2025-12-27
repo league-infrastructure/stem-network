@@ -34,4 +34,9 @@ assert.ok(
   'Events page should call TablesDB.listRows with the object-style signature'
 );
 
+assert.ok(
+  listContents.includes('tableId: \'events\''),
+  'Events page should pass tableId when listing events'
+);
+
 console.log('✅ Events CRUD uses shared Appwrite admin helper');

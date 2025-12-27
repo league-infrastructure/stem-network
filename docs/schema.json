@@ -1,0 +1,901 @@
+{
+  "classes": [
+    {
+      "name": "Person",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "first_name",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "last_name",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "phone",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "date_of_birth",
+          "type": "date",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "sex",
+          "type": "enum",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "grade",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "school",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "bio",
+          "type": "text",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "photo",
+          "type": "media",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "is_adult",
+          "type": "boolean",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "login_enabled",
+          "type": "boolean",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "background_check_status",
+          "type": "enum",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "volunteer_tier",
+          "type": "enum",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "total_events",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "open_to_employment",
+          "type": "boolean",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "specializations",
+          "type": "string[]",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "created_at",
+          "type": "date",
+          "visibility": "+",
+          "visibilityName": "public"
+        }
+      ]
+    },
+    {
+      "name": "InstructorAssignment",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "role",
+          "type": "enum",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "employment_type",
+          "type": "enum",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "hourly_rate",
+          "type": "decimal",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "is_volunteer",
+          "type": "boolean",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "confirmed",
+          "type": "boolean",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "hours_worked",
+          "type": "decimal",
+          "visibility": "+",
+          "visibilityName": "public"
+        }
+      ]
+    },
+    {
+      "name": "InstructorEvaluation",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "technical_skills",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "teaching_ability",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "reliability",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "student_engagement",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "potential_hire",
+          "type": "boolean",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "created_at",
+          "type": "date",
+          "visibility": "+",
+          "visibilityName": "public"
+        }
+      ]
+    },
+    {
+      "name": "Metro",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "slug",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "coordinator_email",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "short_url_domain",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        }
+      ]
+    },
+    {
+      "name": "Venue",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "address",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "parking_instructions",
+          "type": "text",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "building_entry_instructions",
+          "type": "text",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "capacity",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "has_computers",
+          "type": "boolean",
+          "visibility": "+",
+          "visibilityName": "public"
+        }
+      ]
+    },
+    {
+      "name": "Partner",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "partner_type",
+          "type": "enum",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "website",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "contact_email",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "can_deliver_events",
+          "type": "boolean",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "can_host_events",
+          "type": "boolean",
+          "visibility": "+",
+          "visibilityName": "public"
+        }
+      ]
+    },
+    {
+      "name": "Flyer",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "distribution_date",
+          "type": "date",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "distribution_count",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "design_file",
+          "type": "media",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "utm_source",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "utm_campaign",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "total_reach",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        }
+      ]
+    },
+    {
+      "name": "JobPosting",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "description",
+          "type": "richtext",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "hourly_rate",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "hours_per_week",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "requirements",
+          "type": "text",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "posted_date",
+          "type": "date",
+          "visibility": "+",
+          "visibilityName": "public"
+        }
+      ]
+    },
+    {
+      "name": "Event",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "slug",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "blurb",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "short_description",
+          "type": "text",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "instructions",
+          "type": "text",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "enroll",
+          "type": "text",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "event_date",
+          "type": "date",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "start_time",
+          "type": "time",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "end_time",
+          "type": "time",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "capacity",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "available_slots",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "registration_type",
+          "type": "enum",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "walk_in_count",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "page_views",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "register_clicks",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "reference",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        }
+      ]
+    },
+    {
+      "name": "EventPrototype",
+      "attributes": []
+    },
+    {
+      "name": "Tag",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "slug",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        }
+      ]
+    },
+    {
+      "name": "Registration",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "registration_source",
+          "type": "enum",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "utm_source",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "utm_campaign",
+          "type": "string",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "created_at",
+          "type": "date",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "visibility": "+",
+          "visibilityName": "public"
+        }
+      ]
+    },
+    {
+      "name": "RSVP",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "int",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "role",
+          "type": "enum",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "relationship",
+          "type": "enum",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "attended",
+          "type": "boolean",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "checked_in_at",
+          "type": "datetime",
+          "visibility": "+",
+          "visibilityName": "public"
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "visibility": "+",
+          "visibilityName": "public"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "type": "inheritance",
+      "parent": "Event",
+      "child": "EventPrototype",
+      "connector": "<|--"
+    },
+    {
+      "type": "association",
+      "source": "Metro",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "Venue",
+      "label": "metro"
+    },
+    {
+      "type": "association",
+      "source": "Metro",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "Partner",
+      "label": "metro"
+    },
+    {
+      "type": "association",
+      "source": "Partner",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "JobPosting",
+      "label": "partner"
+    },
+    {
+      "type": "association",
+      "source": "Metro",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "JobPosting",
+      "label": "metro"
+    },
+    {
+      "type": "association",
+      "source": "Partner",
+      "sourceMultiplicity": "0..1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "Venue",
+      "label": "partner"
+    },
+    {
+      "type": "association",
+      "source": "Metro",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "Event",
+      "label": "metro"
+    },
+    {
+      "type": "association",
+      "source": "Venue",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "Event",
+      "label": "venue"
+    },
+    {
+      "type": "association",
+      "source": "Partner",
+      "sourceMultiplicity": "0..1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "Event",
+      "label": "partner"
+    },
+    {
+      "type": "association",
+      "source": "Flyer",
+      "sourceMultiplicity": "0..*",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "Event",
+      "label": "flyer_event"
+    },
+    {
+      "type": "association",
+      "source": "Metro",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "Person",
+      "label": "metro"
+    },
+    {
+      "type": "association",
+      "source": "EventPrototype",
+      "sourceMultiplicity": "0..1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "Event",
+      "label": "prototype"
+    },
+    {
+      "type": "association",
+      "source": "Event",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "Registration",
+      "label": "event"
+    },
+    {
+      "type": "association",
+      "source": "Event",
+      "sourceMultiplicity": "0..*",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "Tag",
+      "label": "event_tag"
+    },
+    {
+      "type": "association",
+      "source": "Person",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "Registration",
+      "label": "registrant"
+    },
+    {
+      "type": "association",
+      "source": "Registration",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "RSVP",
+      "label": "registration"
+    },
+    {
+      "type": "association",
+      "source": "Event",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "RSVP",
+      "label": "event"
+    },
+    {
+      "type": "association",
+      "source": "Person",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "RSVP",
+      "label": "attendee"
+    },
+    {
+      "type": "association",
+      "source": "Person",
+      "sourceMultiplicity": "0..1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "RSVP",
+      "label": "guardian"
+    },
+    {
+      "type": "association",
+      "source": "Event",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "InstructorAssignment",
+      "label": "event"
+    },
+    {
+      "type": "association",
+      "source": "Person",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "InstructorAssignment",
+      "label": "instructor"
+    },
+    {
+      "type": "association",
+      "source": "Partner",
+      "sourceMultiplicity": "0..1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "InstructorAssignment",
+      "label": "employer"
+    },
+    {
+      "type": "association",
+      "source": "InstructorAssignment",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "InstructorEvaluation",
+      "label": "instructor_assignment"
+    },
+    {
+      "type": "association",
+      "source": "Person",
+      "sourceMultiplicity": "1",
+      "connector": "--",
+      "targetMultiplicity": "0..*",
+      "target": "InstructorEvaluation",
+      "label": "evaluator"
+    }
+  ]
+}

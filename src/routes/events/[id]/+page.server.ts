@@ -35,8 +35,8 @@ export const load: PageServerLoad = async ({ params }) => {
         updatedAt: event.$updatedAt,
       },
     };
-    } catch (err) {
-      const message = err instanceof Error ? err.message : 'Event not found';
-      throw error(404, message);
-    }
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Event not found';
+    throw error(404, message);
+  }
 };

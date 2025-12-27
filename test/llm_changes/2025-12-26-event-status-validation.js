@@ -16,6 +16,14 @@ assert(
   'New event action must use TablesDB.createRow with object-style parameters.'
 );
 assert(
+  newServer.includes("tableId: 'events'"),
+  'New event action must include tableId when creating events.'
+);
+assert(
+  newServer.includes('rowId: ID.unique()'),
+  'New event action must request unique row IDs.'
+);
+assert(
   newServer.includes('Status must be one of draft, published, cancelled, completed, active, or inactive.'),
   'New event action should surface a clear status validation message.'
 );
