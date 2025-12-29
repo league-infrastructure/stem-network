@@ -10,17 +10,20 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
     "init:dev": "bash scripts/init-dev.sh",
     "init:appwrite": "node scripts/setup-appwrite.js",
-    "init:db": "node scripts/init-db.js",
-    "init:schema": "node scripts/generate-schema.js"
+    "sync_db": "tsx scripts/sync_db.ts",
+    "init:schema": "node scripts/generate-schema.js",
+    "appwrite:login": "source .env && appwrite login --endpoint $PUBLIC_APPWRITE_ENDPOINT --email $APPWRITE_ADMIN_EMAIL --password $APPWRITE_ADMIN_PASSWORD"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^4.0.0",
     "@sveltejs/kit": "^2.16.0",
     "@sveltejs/vite-plugin-svelte": "^5.0.0",
+    "@types/node": "^25.0.3",
     "prettier": "^3.5.3",
     "prettier-plugin-svelte": "^3.3.3",
     "svelte": "^5.0.0",
     "svelte-check": "^4.0.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.5.3",
     "vite": "^6.0.0"
   },

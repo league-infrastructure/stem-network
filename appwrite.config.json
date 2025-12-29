@@ -1,0 +1,1415 @@
+{
+    "projectId": "jtl-stem-net",
+    "projectName": "jtl-stem-net",
+    "settings": {
+        "services": {
+            "account": true,
+            "avatars": true,
+            "databases": true,
+            "locale": true,
+            "health": true,
+            "storage": true,
+            "teams": true,
+            "users": true,
+            "sites": true,
+            "functions": true,
+            "graphql": true,
+            "messaging": true
+        },
+        "auth": {
+            "methods": {
+                "jwt": true,
+                "phone": true,
+                "invites": true,
+                "anonymous": true,
+                "email-otp": true,
+                "magic-url": true,
+                "email-password": true
+            },
+            "security": {
+                "duration": 31536000,
+                "limit": 0,
+                "sessionsLimit": 10,
+                "passwordHistory": 0,
+                "passwordDictionary": false,
+                "personalDataCheck": false,
+                "sessionAlerts": false,
+                "mockNumbers": []
+            }
+        }
+    },
+    "functions": [
+        {
+            "$id": "694cc9c3001bffd2a93c",
+            "execute": [
+                "any"
+            ],
+            "name": "Starter function",
+            "enabled": true,
+            "logging": true,
+            "runtime": "python-3.9",
+            "scopes": [
+                "users.read"
+            ],
+            "events": [],
+            "schedule": "",
+            "timeout": 15,
+            "entrypoint": "src/main.py",
+            "commands": "pip install -r requirements.txt",
+            "specification": "s-0.5vcpu-512mb",
+            "path": "functions/Starter function"
+        }
+    ],
+    "tablesDB": [
+        {
+            "$id": "stem_network_db",
+            "name": "stem_network_db",
+            "enabled": true
+        }
+    ],
+    "tables": [
+        {
+            "$id": "people",
+            "$permissions": [],
+            "databaseId": "stem_network_db",
+            "name": "Person",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "first_name",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "last_name",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "email",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "phone",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "grade",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "school",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "photo",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "is_adult",
+                    "type": "boolean",
+                    "required": false,
+                    "array": false,
+                    "default": null
+                },
+                {
+                    "key": "login_enabled",
+                    "type": "boolean",
+                    "required": false,
+                    "array": false,
+                    "default": null
+                },
+                {
+                    "key": "total_events",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "open_to_employment",
+                    "type": "boolean",
+                    "required": false,
+                    "array": false,
+                    "default": null
+                },
+                {
+                    "key": "specializations",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "metro",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "metros",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "people",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "date_of_birth",
+                    "type": "datetime",
+                    "required": false,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                },
+                {
+                    "key": "bio",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 65535,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "created_at",
+                    "type": "datetime",
+                    "required": false,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                },
+                {
+                    "key": "sex",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "elements": [
+                        "male",
+                        "female",
+                        "other",
+                        "prefer_not_to_say"
+                    ],
+                    "format": "enum",
+                    "default": null
+                },
+                {
+                    "key": "background_check_status",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "elements": [
+                        "pending",
+                        "approved",
+                        "denied",
+                        "expired"
+                    ],
+                    "format": "enum",
+                    "default": null
+                },
+                {
+                    "key": "volunteer_tier",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "elements": [
+                        "beginner",
+                        "intermediate",
+                        "advanced",
+                        "expert"
+                    ],
+                    "format": "enum",
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "instructorassignments",
+            "$permissions": [],
+            "databaseId": "stem_network_db",
+            "name": "InstructorAssignment",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "is_volunteer",
+                    "type": "boolean",
+                    "required": false,
+                    "array": false,
+                    "default": null
+                },
+                {
+                    "key": "confirmed",
+                    "type": "boolean",
+                    "required": false,
+                    "array": false,
+                    "default": null
+                },
+                {
+                    "key": "event",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "events",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "instructorassignments",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "instructor",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "people",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "instructorassignments",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "employer",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "partners",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "instructorassignments",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "role",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "elements": [
+                        "instructor",
+                        "assistant",
+                        "volunteer",
+                        "mentor"
+                    ],
+                    "format": "enum",
+                    "default": null
+                },
+                {
+                    "key": "employment_type",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "elements": [
+                        "full_time",
+                        "part_time",
+                        "contract",
+                        "volunteer"
+                    ],
+                    "format": "enum",
+                    "default": null
+                },
+                {
+                    "key": "hourly_rate",
+                    "type": "double",
+                    "required": false,
+                    "array": false,
+                    "min": -1.7976931348623157e+308,
+                    "max": 1.7976931348623157e+308,
+                    "default": null
+                },
+                {
+                    "key": "hours_worked",
+                    "type": "double",
+                    "required": false,
+                    "array": false,
+                    "min": -1.7976931348623157e+308,
+                    "max": 1.7976931348623157e+308,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "instructorevaluations",
+            "$permissions": [],
+            "databaseId": "stem_network_db",
+            "name": "InstructorEvaluation",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "technical_skills",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "teaching_ability",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "reliability",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "student_engagement",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "potential_hire",
+                    "type": "boolean",
+                    "required": false,
+                    "array": false,
+                    "default": null
+                },
+                {
+                    "key": "instructor_assignment",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "instructorassignments",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "instructorevaluations",
+                    "onDelete": "cascade",
+                    "side": "parent"
+                },
+                {
+                    "key": "evaluator",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "people",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "instructorevaluations",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "notes",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 65535,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "created_at",
+                    "type": "datetime",
+                    "required": false,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "metros",
+            "$permissions": [],
+            "databaseId": "stem_network_db",
+            "name": "Metro",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "slug",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "coordinator_email",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "short_url_domain",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "venues",
+            "$permissions": [],
+            "databaseId": "stem_network_db",
+            "name": "Venue",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "address",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "capacity",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "has_computers",
+                    "type": "boolean",
+                    "required": false,
+                    "array": false,
+                    "default": null
+                },
+                {
+                    "key": "metro",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "metros",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "venues",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "partner",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "partners",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "venues",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "parking_instructions",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 65535,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "building_entry_instructions",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 65535,
+                    "default": null,
+                    "encrypt": false
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "partners",
+            "$permissions": [],
+            "databaseId": "stem_network_db",
+            "name": "Partner",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "website",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "contact_email",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "can_deliver_events",
+                    "type": "boolean",
+                    "required": false,
+                    "array": false,
+                    "default": null
+                },
+                {
+                    "key": "can_host_events",
+                    "type": "boolean",
+                    "required": false,
+                    "array": false,
+                    "default": null
+                },
+                {
+                    "key": "metro",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "metros",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "partners",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "partner_type",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "elements": [
+                        "school",
+                        "nonprofit",
+                        "corporate",
+                        "government"
+                    ],
+                    "format": "enum",
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "flyers",
+            "$permissions": [],
+            "databaseId": "stem_network_db",
+            "name": "Flyer",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "distribution_count",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "design_file",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "utm_source",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "utm_campaign",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "total_reach",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "distribution_date",
+                    "type": "datetime",
+                    "required": false,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "jobpostings",
+            "$permissions": [],
+            "databaseId": "stem_network_db",
+            "name": "JobPosting",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "title",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "hourly_rate",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "hours_per_week",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "partner",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "partners",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "jobpostings",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "metro",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "metros",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "jobpostings",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "description",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 65535,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "requirements",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 65535,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "status",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "elements": [
+                        "draft",
+                        "published",
+                        "cancelled",
+                        "completed",
+                        "active",
+                        "inactive"
+                    ],
+                    "format": "enum",
+                    "default": null
+                },
+                {
+                    "key": "posted_date",
+                    "type": "datetime",
+                    "required": false,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "events",
+            "$permissions": [],
+            "databaseId": "stem_network_db",
+            "name": "Event",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "slug",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "title",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "blurb",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "capacity",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "available_slots",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "walk_in_count",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "page_views",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "register_clicks",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "reference",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "metro",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "metros",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "events",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "venue",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "venues",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "events",
+                    "onDelete": "cascade",
+                    "side": "parent"
+                },
+                {
+                    "key": "partner",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "partners",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "events",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "prototype",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "eventprototypes",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "events",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "short_description",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 65535,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "description",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 65535,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "instructions",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 65535,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "enroll",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 65535,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "event_date",
+                    "type": "datetime",
+                    "required": false,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                },
+                {
+                    "key": "start_time",
+                    "type": "datetime",
+                    "required": false,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                },
+                {
+                    "key": "end_time",
+                    "type": "datetime",
+                    "required": false,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                },
+                {
+                    "key": "registration_type",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "elements": [
+                        "open",
+                        "account_required",
+                        "walk_in_only"
+                    ],
+                    "format": "enum",
+                    "default": null
+                },
+                {
+                    "key": "status",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "elements": [
+                        "draft",
+                        "published",
+                        "cancelled",
+                        "completed",
+                        "active",
+                        "inactive"
+                    ],
+                    "format": "enum",
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "eventprototypes",
+            "$permissions": [],
+            "databaseId": "stem_network_db",
+            "name": "EventPrototype",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [],
+            "indexes": []
+        },
+        {
+            "$id": "tags",
+            "$permissions": [],
+            "databaseId": "stem_network_db",
+            "name": "Tag",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "slug",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "registrations",
+            "$permissions": [],
+            "databaseId": "stem_network_db",
+            "name": "Registration",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "utm_source",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "utm_campaign",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null,
+                    "encrypt": false
+                },
+                {
+                    "key": "event",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "events",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "registrations",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "registrant",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "people",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "registrations",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "registration_source",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "elements": [
+                        "web",
+                        "app",
+                        "phone",
+                        "in_person",
+                        "email"
+                    ],
+                    "format": "enum",
+                    "default": null
+                },
+                {
+                    "key": "created_at",
+                    "type": "datetime",
+                    "required": false,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                },
+                {
+                    "key": "notes",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 65535,
+                    "default": null,
+                    "encrypt": false
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "rsvps",
+            "$permissions": [],
+            "databaseId": "stem_network_db",
+            "name": "RSVP",
+            "enabled": true,
+            "rowSecurity": false,
+            "columns": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "required": false,
+                    "array": false,
+                    "min": -9223372036854775808,
+                    "max": 9223372036854775807,
+                    "default": null
+                },
+                {
+                    "key": "attended",
+                    "type": "boolean",
+                    "required": false,
+                    "array": false,
+                    "default": null
+                },
+                {
+                    "key": "registration",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "registrations",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "rsvps",
+                    "onDelete": "cascade",
+                    "side": "parent"
+                },
+                {
+                    "key": "event",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "events",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "rsvps",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "attendee",
+                    "type": "relationship",
+                    "required": false,
+                    "array": false,
+                    "relatedTable": "people",
+                    "relationType": "manyToOne",
+                    "twoWay": false,
+                    "twoWayKey": "rsvps",
+                    "onDelete": "restrict",
+                    "side": "parent"
+                },
+                {
+                    "key": "role",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "elements": [
+                        "instructor",
+                        "assistant",
+                        "volunteer",
+                        "mentor"
+                    ],
+                    "format": "enum",
+                    "default": null
+                },
+                {
+                    "key": "relationship",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "elements": [
+                        "parent",
+                        "guardian",
+                        "student",
+                        "sibling"
+                    ],
+                    "format": "enum",
+                    "default": null
+                },
+                {
+                    "key": "checked_in_at",
+                    "type": "datetime",
+                    "required": false,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                },
+                {
+                    "key": "notes",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 65535,
+                    "default": null,
+                    "encrypt": false
+                }
+            ],
+            "indexes": []
+        }
+    ]
+}

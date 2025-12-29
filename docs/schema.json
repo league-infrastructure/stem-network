@@ -1,901 +1,1091 @@
 {
-  "classes": [
+  "collections": [
     {
-      "name": "Person",
+      "className": "Person",
+      "collectionId": "people",
+      "onDelete": "restrict",
       "attributes": [
         {
           "name": "id",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "first_name",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "last_name",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "email",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "phone",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "date_of_birth",
-          "type": "date",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "datetime",
+          "required": false,
+          "originalType": "date"
         },
         {
           "name": "sex",
           "type": "enum",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "enum",
+          "values": [
+            "male",
+            "female",
+            "other",
+            "prefer_not_to_say"
+          ]
         },
         {
           "name": "grade",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "school",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "bio",
           "type": "text",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "text",
+          "size": 65535
         },
         {
           "name": "photo",
-          "type": "media",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "string",
+          "required": false,
+          "originalType": "media",
+          "size": 255
         },
         {
           "name": "is_adult",
           "type": "boolean",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "boolean"
         },
         {
           "name": "login_enabled",
           "type": "boolean",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "boolean"
         },
         {
           "name": "background_check_status",
           "type": "enum",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "enum",
+          "values": [
+            "pending",
+            "approved",
+            "denied",
+            "expired"
+          ]
         },
         {
           "name": "volunteer_tier",
           "type": "enum",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "enum",
+          "values": [
+            "beginner",
+            "intermediate",
+            "advanced",
+            "expert"
+          ]
         },
         {
           "name": "total_events",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "open_to_employment",
           "type": "boolean",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "boolean"
         },
         {
           "name": "specializations",
-          "type": "string[]",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "string",
+          "required": false,
+          "originalType": "string[]",
+          "size": 255,
+          "array": true
         },
         {
           "name": "created_at",
-          "type": "date",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "datetime",
+          "required": false,
+          "originalType": "date"
         }
       ]
     },
     {
-      "name": "InstructorAssignment",
+      "className": "InstructorAssignment",
+      "collectionId": "instructorassignments",
+      "onDelete": "cascade",
       "attributes": [
         {
           "name": "id",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "role",
           "type": "enum",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "enum",
+          "values": [
+            "instructor",
+            "assistant",
+            "volunteer",
+            "mentor"
+          ]
         },
         {
           "name": "employment_type",
           "type": "enum",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "enum",
+          "values": [
+            "full_time",
+            "part_time",
+            "contract",
+            "volunteer"
+          ]
         },
         {
           "name": "hourly_rate",
-          "type": "decimal",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "float",
+          "required": false,
+          "originalType": "decimal"
         },
         {
           "name": "is_volunteer",
           "type": "boolean",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "boolean"
         },
         {
           "name": "confirmed",
           "type": "boolean",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "boolean"
         },
         {
           "name": "hours_worked",
-          "type": "decimal",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "float",
+          "required": false,
+          "originalType": "decimal"
         }
       ]
     },
     {
-      "name": "InstructorEvaluation",
+      "className": "InstructorEvaluation",
+      "collectionId": "instructorevaluations",
+      "onDelete": "setNull",
       "attributes": [
         {
           "name": "id",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "technical_skills",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "teaching_ability",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "reliability",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "student_engagement",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "notes",
           "type": "text",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "text",
+          "size": 65535
         },
         {
           "name": "potential_hire",
           "type": "boolean",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "boolean"
         },
         {
           "name": "created_at",
-          "type": "date",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "datetime",
+          "required": false,
+          "originalType": "date"
         }
       ]
     },
     {
-      "name": "Metro",
+      "className": "Metro",
+      "collectionId": "metros",
+      "onDelete": "restrict",
       "attributes": [
         {
           "name": "id",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "name",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "slug",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "coordinator_email",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "short_url_domain",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         }
       ]
     },
     {
-      "name": "Venue",
+      "className": "Venue",
+      "collectionId": "venues",
+      "onDelete": "cascade",
       "attributes": [
         {
           "name": "id",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "name",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "address",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "parking_instructions",
           "type": "text",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "text",
+          "size": 65535
         },
         {
           "name": "building_entry_instructions",
           "type": "text",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "text",
+          "size": 65535
         },
         {
           "name": "capacity",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "has_computers",
           "type": "boolean",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "boolean"
         }
       ]
     },
     {
-      "name": "Partner",
+      "className": "Partner",
+      "collectionId": "partners",
+      "onDelete": "restrict",
       "attributes": [
         {
           "name": "id",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "name",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "partner_type",
           "type": "enum",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "enum",
+          "values": [
+            "school",
+            "nonprofit",
+            "corporate",
+            "government"
+          ]
         },
         {
           "name": "website",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "contact_email",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "can_deliver_events",
           "type": "boolean",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "boolean"
         },
         {
           "name": "can_host_events",
           "type": "boolean",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "boolean"
         }
       ]
     },
     {
-      "name": "Flyer",
+      "className": "Flyer",
+      "collectionId": "flyers",
+      "onDelete": "restrict",
       "attributes": [
         {
           "name": "id",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "name",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "distribution_date",
-          "type": "date",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "datetime",
+          "required": false,
+          "originalType": "date"
         },
         {
           "name": "distribution_count",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "design_file",
-          "type": "media",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "string",
+          "required": false,
+          "originalType": "media",
+          "size": 255
         },
         {
           "name": "utm_source",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "utm_campaign",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "total_reach",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         }
       ]
     },
     {
-      "name": "JobPosting",
+      "className": "JobPosting",
+      "collectionId": "jobpostings",
+      "onDelete": "setNull",
       "attributes": [
         {
           "name": "id",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "title",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "description",
-          "type": "richtext",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "text",
+          "required": false,
+          "originalType": "richtext",
+          "size": 65535
         },
         {
           "name": "hourly_rate",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "hours_per_week",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "requirements",
           "type": "text",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "text",
+          "size": 65535
         },
         {
           "name": "status",
           "type": "enum",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "enum",
+          "values": [
+            "draft",
+            "published",
+            "cancelled",
+            "completed",
+            "active",
+            "inactive"
+          ]
         },
         {
           "name": "posted_date",
-          "type": "date",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "datetime",
+          "required": false,
+          "originalType": "date"
         }
       ]
     },
     {
-      "name": "Event",
+      "className": "Event",
+      "collectionId": "events",
+      "onDelete": "restrict",
       "attributes": [
         {
           "name": "id",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "slug",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "title",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "blurb",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "short_description",
           "type": "text",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "text",
+          "size": 65535
         },
         {
           "name": "description",
           "type": "text",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "text",
+          "size": 65535
         },
         {
           "name": "instructions",
           "type": "text",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "text",
+          "size": 65535
         },
         {
           "name": "enroll",
           "type": "text",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "text",
+          "size": 65535
         },
         {
           "name": "event_date",
-          "type": "date",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "datetime",
+          "required": false,
+          "originalType": "date"
         },
         {
           "name": "start_time",
-          "type": "time",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "datetime",
+          "required": false,
+          "originalType": "time"
         },
         {
           "name": "end_time",
-          "type": "time",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "datetime",
+          "required": false,
+          "originalType": "time"
         },
         {
           "name": "capacity",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "available_slots",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "registration_type",
           "type": "enum",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "enum",
+          "values": [
+            "open",
+            "account_required",
+            "walk_in_only"
+          ]
         },
         {
           "name": "status",
           "type": "enum",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "enum",
+          "values": [
+            "draft",
+            "published",
+            "cancelled",
+            "completed",
+            "active",
+            "inactive"
+          ]
         },
         {
           "name": "walk_in_count",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "page_views",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "register_clicks",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "reference",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         }
       ]
     },
     {
-      "name": "EventPrototype",
+      "className": "EventPrototype",
+      "collectionId": "eventprototypes",
+      "onDelete": "restrict",
       "attributes": []
     },
     {
-      "name": "Tag",
+      "className": "Tag",
+      "collectionId": "tags",
+      "onDelete": "setNull",
       "attributes": [
         {
           "name": "id",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "name",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "slug",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         }
       ]
     },
     {
-      "name": "Registration",
+      "className": "Registration",
+      "collectionId": "registrations",
+      "onDelete": "cascade",
       "attributes": [
         {
           "name": "id",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "registration_source",
           "type": "enum",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "enum",
+          "values": [
+            "web",
+            "app",
+            "phone",
+            "in_person",
+            "email"
+          ]
         },
         {
           "name": "utm_source",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "utm_campaign",
           "type": "string",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "string",
+          "size": 255
         },
         {
           "name": "created_at",
-          "type": "date",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "datetime",
+          "required": false,
+          "originalType": "date"
         },
         {
           "name": "notes",
           "type": "text",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "text",
+          "size": 65535
         }
       ]
     },
     {
-      "name": "RSVP",
+      "className": "RSVP",
+      "collectionId": "rsvps",
+      "onDelete": "cascade",
       "attributes": [
         {
           "name": "id",
-          "type": "int",
-          "visibility": "+",
-          "visibilityName": "public"
+          "type": "integer",
+          "required": false,
+          "originalType": "int"
         },
         {
           "name": "role",
           "type": "enum",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "enum",
+          "values": [
+            "instructor",
+            "assistant",
+            "volunteer",
+            "mentor"
+          ]
         },
         {
           "name": "relationship",
           "type": "enum",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "enum",
+          "values": [
+            "parent",
+            "guardian",
+            "student",
+            "sibling"
+          ]
         },
         {
           "name": "attended",
           "type": "boolean",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "boolean"
         },
         {
           "name": "checked_in_at",
           "type": "datetime",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "datetime"
         },
         {
           "name": "notes",
           "type": "text",
-          "visibility": "+",
-          "visibilityName": "public"
+          "required": false,
+          "originalType": "text",
+          "size": 65535
         }
       ]
     }
   ],
   "relationships": [
     {
-      "type": "inheritance",
-      "parent": "Event",
-      "child": "EventPrototype",
-      "connector": "<|--"
-    },
-    {
-      "type": "association",
-      "source": "Metro",
+      "attribute": "metro",
+      "collectionId": "venues",
+      "relatedCollectionId": "metros",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "restrict",
+      "sourceClass": "Metro",
+      "targetClass": "Venue",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "Venue",
-      "label": "metro"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Metro",
+      "attribute": "metro",
+      "collectionId": "partners",
+      "relatedCollectionId": "metros",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "restrict",
+      "sourceClass": "Metro",
+      "targetClass": "Partner",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "Partner",
-      "label": "metro"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Partner",
+      "attribute": "partner",
+      "collectionId": "jobpostings",
+      "relatedCollectionId": "partners",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "restrict",
+      "sourceClass": "Partner",
+      "targetClass": "JobPosting",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "JobPosting",
-      "label": "partner"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Metro",
+      "attribute": "metro",
+      "collectionId": "jobpostings",
+      "relatedCollectionId": "metros",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "restrict",
+      "sourceClass": "Metro",
+      "targetClass": "JobPosting",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "JobPosting",
-      "label": "metro"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Partner",
+      "attribute": "partner",
+      "collectionId": "venues",
+      "relatedCollectionId": "partners",
+      "relationshipType": "manyToOne",
+      "required": false,
+      "onDelete": "restrict",
+      "sourceClass": "Partner",
+      "targetClass": "Venue",
       "sourceMultiplicity": "0..1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "Venue",
-      "label": "partner"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Metro",
+      "attribute": "metro",
+      "collectionId": "events",
+      "relatedCollectionId": "metros",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "restrict",
+      "sourceClass": "Metro",
+      "targetClass": "Event",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "Event",
-      "label": "metro"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Venue",
+      "attribute": "venue",
+      "collectionId": "events",
+      "relatedCollectionId": "venues",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "cascade",
+      "sourceClass": "Venue",
+      "targetClass": "Event",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "Event",
-      "label": "venue"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Partner",
+      "attribute": "partner",
+      "collectionId": "events",
+      "relatedCollectionId": "partners",
+      "relationshipType": "manyToOne",
+      "required": false,
+      "onDelete": "restrict",
+      "sourceClass": "Partner",
+      "targetClass": "Event",
       "sourceMultiplicity": "0..1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "Event",
-      "label": "partner"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Flyer",
-      "sourceMultiplicity": "0..*",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "Event",
-      "label": "flyer_event"
-    },
-    {
-      "type": "association",
-      "source": "Metro",
+      "attribute": "metro",
+      "collectionId": "people",
+      "relatedCollectionId": "metros",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "restrict",
+      "sourceClass": "Metro",
+      "targetClass": "Person",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "Person",
-      "label": "metro"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "EventPrototype",
+      "attribute": "prototype",
+      "collectionId": "events",
+      "relatedCollectionId": "eventprototypes",
+      "relationshipType": "manyToOne",
+      "required": false,
+      "onDelete": "restrict",
+      "sourceClass": "EventPrototype",
+      "targetClass": "Event",
       "sourceMultiplicity": "0..1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "Event",
-      "label": "prototype"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Event",
+      "attribute": "event",
+      "collectionId": "registrations",
+      "relatedCollectionId": "events",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "restrict",
+      "sourceClass": "Event",
+      "targetClass": "Registration",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "Registration",
-      "label": "event"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Event",
-      "sourceMultiplicity": "0..*",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "Tag",
-      "label": "event_tag"
-    },
-    {
-      "type": "association",
-      "source": "Person",
+      "attribute": "registrant",
+      "collectionId": "registrations",
+      "relatedCollectionId": "people",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "restrict",
+      "sourceClass": "Person",
+      "targetClass": "Registration",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "Registration",
-      "label": "registrant"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Registration",
+      "attribute": "registration",
+      "collectionId": "rsvps",
+      "relatedCollectionId": "registrations",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "cascade",
+      "sourceClass": "Registration",
+      "targetClass": "RSVP",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "RSVP",
-      "label": "registration"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Event",
+      "attribute": "event",
+      "collectionId": "rsvps",
+      "relatedCollectionId": "events",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "restrict",
+      "sourceClass": "Event",
+      "targetClass": "RSVP",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "RSVP",
-      "label": "event"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Person",
+      "attribute": "attendee",
+      "collectionId": "rsvps",
+      "relatedCollectionId": "people",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "restrict",
+      "sourceClass": "Person",
+      "targetClass": "RSVP",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "RSVP",
-      "label": "attendee"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Person",
+      "attribute": "guardian",
+      "collectionId": "rsvps",
+      "relatedCollectionId": "people",
+      "relationshipType": "manyToOne",
+      "required": false,
+      "onDelete": "restrict",
+      "sourceClass": "Person",
+      "targetClass": "RSVP",
       "sourceMultiplicity": "0..1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "RSVP",
-      "label": "guardian"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Event",
+      "attribute": "event",
+      "collectionId": "instructorassignments",
+      "relatedCollectionId": "events",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "restrict",
+      "sourceClass": "Event",
+      "targetClass": "InstructorAssignment",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "InstructorAssignment",
-      "label": "event"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Person",
+      "attribute": "instructor",
+      "collectionId": "instructorassignments",
+      "relatedCollectionId": "people",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "restrict",
+      "sourceClass": "Person",
+      "targetClass": "InstructorAssignment",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "InstructorAssignment",
-      "label": "instructor"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Partner",
+      "attribute": "employer",
+      "collectionId": "instructorassignments",
+      "relatedCollectionId": "partners",
+      "relationshipType": "manyToOne",
+      "required": false,
+      "onDelete": "restrict",
+      "sourceClass": "Partner",
+      "targetClass": "InstructorAssignment",
       "sourceMultiplicity": "0..1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "InstructorAssignment",
-      "label": "employer"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "InstructorAssignment",
+      "attribute": "instructor_assignment",
+      "collectionId": "instructorevaluations",
+      "relatedCollectionId": "instructorassignments",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "cascade",
+      "sourceClass": "InstructorAssignment",
+      "targetClass": "InstructorEvaluation",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "InstructorEvaluation",
-      "label": "instructor_assignment"
+      "targetMultiplicity": "0..*"
     },
     {
-      "type": "association",
-      "source": "Person",
+      "attribute": "evaluator",
+      "collectionId": "instructorevaluations",
+      "relatedCollectionId": "people",
+      "relationshipType": "manyToOne",
+      "required": true,
+      "onDelete": "restrict",
+      "sourceClass": "Person",
+      "targetClass": "InstructorEvaluation",
       "sourceMultiplicity": "1",
-      "connector": "--",
-      "targetMultiplicity": "0..*",
-      "target": "InstructorEvaluation",
-      "label": "evaluator"
+      "targetMultiplicity": "0..*"
     }
+  ],
+  "warnings": [
+    "Skipping many-to-many relationship between Flyer and Event (flyer_event).",
+    "Skipping many-to-many relationship between Event and Tag (event_tag)."
   ]
 }

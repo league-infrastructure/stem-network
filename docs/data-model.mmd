@@ -3,7 +3,7 @@ classDiagram
     %% MODULE: People
     %% ============================================
     
-    %% onDelete: cascade
+    %% onDelete: restrict
     class Person {
         +id: int
         +first_name: string
@@ -53,7 +53,7 @@ classDiagram
     %% MODULE: Place
     %% ============================================
     
-    %% onDelete: cascade
+    %% onDelete: restrict
     class Metro {
         +id: int
         +name: string
@@ -73,7 +73,7 @@ classDiagram
         +has_computers: boolean
     }
     
-    %% onDelete: cascade
+    %% onDelete: restrict
     class Partner {
         +id: int
         +name: string
@@ -84,7 +84,7 @@ classDiagram
         +can_host_events: boolean
     }
     
-    %% onDelete: setNull
+    %% onDelete: restrict
     class Flyer {
         +id: int
         +name: string
@@ -112,7 +112,7 @@ classDiagram
     %% MODULE: Event
     %% ============================================
     
-    %% onDelete: cascade
+    %% onDelete: restrict
     class Event {
         +id: int
         +slug: string
@@ -135,7 +135,7 @@ classDiagram
         +reference: string %% optional external reference ID
     }
     
-    %% onDelete: setNull
+    %% onDelete: restrict
     class EventPrototype {
     }
     
@@ -159,8 +159,8 @@ classDiagram
         +notes: text
     }
     
-    %% onDelete: setNull
-    class RSVP {
+    %% onDelete: cascade
+    class RSVP which appwrite {
         +id: int
         +role: enum
         +relationship: enum
